@@ -22,11 +22,6 @@ Thumbs.db
 .cache/
 *.sqlite3
 
-# Model artifacts
-*.pkl
-*.joblib
-*.h5
-
 # Datasets
 *.csv
 *.xlsx
@@ -40,13 +35,5 @@ Thumbs.db
 
 # VSCode
 .vscode/
-
-# Environment files
-requirements.txt
-
-# Ignore test data and temporary files
-model/X_test.csv
-model/y_test.csv
-
 # If using virtual environments or notebooks:
 pip-wheel-metadata/
