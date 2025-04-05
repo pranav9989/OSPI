@@ -1,0 +1,52 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg
+*.egg-info/
+dist/
+build/
+.env
+.venv/
+venv/
+*.env
+shopper-env/
+# Jupyter
+.ipynb_checkpoints
+
+# OS Files
+.DS_Store
+Thumbs.db
+
+# Logs and cache
+*.log
+.cache/
+*.sqlite3
+
+# Model artifacts
+*.pkl
+*.joblib
+*.h5
+
+# Datasets
+*.csv
+*.xlsx
+*.tsv
+*.zip
+*.rar
+
+# Streamlit
+.streamlit/config.toml
+.streamlit/secrets.toml
+
+# VSCode
+.vscode/
+
+# Environment files
+requirements.txt
+
+# Ignore test data and temporary files
+model/X_test.csv
+model/y_test.csv
+
+# If using virtual environments or notebooks:
+pip-wheel-metadata/
