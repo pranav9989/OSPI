@@ -38,7 +38,7 @@ if page == "Predictor":
         }
 
         selected_model = st.selectbox("🧠 Choose Model", list(model_options.keys()))
-        st.markdown(f"🔍 **Accuracy**: `{model_accuracies[selected_model]*100:.2f}%`")
+        #st.markdown(f"🔍 **Accuracy**: `{model_accuracies[selected_model]*100:.2f}%`")
         model = joblib.load(model_options[selected_model])
 
     # 🔢 Load Data for Evaluation
