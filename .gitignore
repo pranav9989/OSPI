@@ -22,13 +22,6 @@ Thumbs.db
 .cache/
 *.sqlite3
 
-# Datasets
-*.csv
-*.xlsx
-*.tsv
-*.zip
-*.rar
-
 # Streamlit
 .streamlit/config.toml
 .streamlit/secrets.toml
