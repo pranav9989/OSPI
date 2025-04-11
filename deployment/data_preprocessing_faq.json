@@ -1,0 +1,114 @@
+[
+  {
+    "question": "What is the target variable in your dataset?",
+    "answer": "The target variable is 'Revenue', indicating whether a visitor generated revenue (1) or not (0)."
+  },
+  {
+    "question": "How did you handle categorical data in your dataset?",
+    "answer": "We applied one-hot encoding to all categorical features including 'VisitorType', 'OperatingSystems', 'Browser', 'Region', and 'SpecialDay'."
+  },
+  {
+    "question": "What is one-hot encoding and why did you use it?",
+    "answer": "One-hot encoding creates separate binary columns for each category in a categorical feature, enabling machine learning algorithms to process them."
+  },
+  {
+    "question": "What preprocessing did you apply to the 'Weekend' column?",
+    "answer": "It was a boolean column which we converted to integer: False to 0 and True to 1."
+  },
+  {
+    "question": "How did you preprocess the 'Month' column?",
+    "answer": "We mapped month names to numbers (Jan = 1, ..., Dec = 12) and applied sine and cosine transformations to retain its cyclical nature."
+  },
+  {
+    "question": "Why did you use sine and cosine transformations for the 'Month' column?",
+    "answer": "To encode the cyclical pattern of months (e.g., December is close to January) in a way that models can understand."
+  },
+  {
+    "question": "What transformations did you apply to numerical columns?",
+    "answer": "We used log(1+x) transformation to reduce skewness in several columns like 'Administrative', 'ExitRates', and 'PageValues'."
+  },
+  {
+    "question": "Why remove the 'Informational' and 'Informational_Duration' columns?",
+    "answer": "These columns were found to be redundant and non-contributory to the model\u2019s performance."
+  },
+  {
+    "question": "How did you handle outliers in the dataset?",
+    "answer": "We capped outliers using the IQR (Interquartile Range) method for 'ProductRelated_Duration', 'BounceRates', and 'ExitRates'."
+  },
+  {
+    "question": "Did you scale the data before training?",
+    "answer": "Yes, we used StandardScaler to normalize all numerical features before model training."
+  },
+  {
+    "question": "What technique did you use to balance the dataset?",
+    "answer": "We used SMOTE (Synthetic Minority Oversampling Technique) to handle class imbalance in the training set."
+  },
+  {
+    "question": "How did you split your data?",
+    "answer": "We performed a 70-30 train-test split using sklearn\u2019s train_test_split method."
+  },
+  {
+    "question": "How many features were used in the final model?",
+    "answer": "The final dataset included 29 features after preprocessing."
+  },
+  {
+    "question": "How did you handle the 'TrafficType' column?",
+    "answer": "'TrafficType' was kept as is, assuming its numerical values carried meaningful information."
+  },
+  {
+    "question": "Why didn\u2019t you drop the 'PageValues' column?",
+    "answer": "'PageValues' was retained as it strongly correlates with purchasing behavior."
+  },
+  {
+    "question": "Were any boolean columns converted?",
+    "answer": "Yes, all boolean columns created through one-hot encoding were converted to integer (0 or 1)."
+  },
+  {
+    "question": "What does the SMOTE technique do?",
+    "answer": "SMOTE generates synthetic samples of the minority class to balance the class distribution."
+  },
+  {
+    "question": "Why use ColumnTransformer?",
+    "answer": "ColumnTransformer allows us to selectively apply transformations (like StandardScaler) to numerical columns without altering categorical ones."
+  },
+  {
+    "question": "Which columns were scaled?",
+    "answer": "All numerical columns including 'Administrative', 'ProductRelated', 'BounceRates', 'ExitRates', and others were standardized."
+  },
+  {
+    "question": "Was any feature engineering done?",
+    "answer": "Yes, we engineered cyclical features for 'Month' and binned categories like 'SpecialDay' and 'Browser'."
+  },
+  {
+    "question": "Can you summarize the entire preprocessing pipeline?",
+    "answer": "Sure! We cleaned and transformed the dataset by encoding categorical variables using one-hot encoding, applied cyclical transformation to the 'Month' column, log-transformed skewed numerical features, removed redundant columns, handled outliers using the IQR method, converted boolean values to integers, balanced the dataset using SMOTE, and scaled the numerical features using StandardScaler."
+  },
+  {
+    "question": "Is the dataset balanced or imbalanced?",
+    "answer": "The original dataset was imbalanced with fewer positive 'Revenue' cases. We applied SMOTE to balance the class distribution in the training data."
+  },
+  {
+    "question": "Can you provide a link to the dataset?",
+    "answer": "Yes! The dataset is available on UCI Machine Learning Repository: https://archive.ics.uci.edu/ml/datasets/Online+Shoppers+Purchasing+Intention+Dataset"
+  },
+  {
+    "question": "Why did you cyclically transform the 'Month' column instead of label encoding it?",
+    "answer": "Cyclical transformation (using sine and cosine) preserves the fact that months have a circular relationship — December is close to January. Label encoding would introduce a false ordinal relationship between months."
+  },
+  {
+    "question": "What are the final model-ready features after preprocessing?",
+    "answer": "After preprocessing, we used 29 features, including transformed numerical columns, one-hot encoded categorical columns, and engineered cyclical features for 'Month'."
+  },
+  {
+    "question": "Which columns were dropped during preprocessing?",
+    "answer": "We dropped 'Informational' and 'Informational_Duration' as they didn’t contribute significantly to model performance and were redundant."
+  },
+  {
+    "question": "How did you handle missing data?",
+    "answer": "The dataset did not contain missing values, so no imputation or removal was needed during preprocessing."
+  },
+  {
+    "question": "Why is data preprocessing important?",
+    "answer": "Preprocessing prepares raw data for modeling by cleaning, transforming, and structuring it in a way that enhances model performance, ensures consistency, and handles issues like skewness, imbalance, and categorical variables."
+  }
+]

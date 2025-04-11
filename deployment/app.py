@@ -212,7 +212,27 @@ elif page == "Dashboard":
     st.pyplot(fig3)
 
 import google.generativeai as genai
+import google.generativeai as genai
+import json
+import difflib
 
+# Load custom Q&A JSON
+with open("data_preprocessing_faq.json", "r") as f:
+    faq_data = json.load(f)
+
+# Function to find closest match in the custom Q&A
+def find_answer_from_faq(user_input, threshold=0.7):
+    questions = [item["question"] for item in faq_data]
+    closest_match = difflib.get_close_matches(user_input.lower(), [q.lower() for q in questions], n=1, cutoff=threshold)
+    
+    if closest_match:
+        # Return the answer of the matched question
+        for item in faq_data:
+            if item["question"].lower() == closest_match[0]:
+                return item["answer"]
+    return None
+
+# --- UI ---
 st.sidebar.markdown("---")
 st.sidebar.header("💬 Ask a Question")
 
@@ -221,16 +241,20 @@ GEMINI_API_KEY = "AIzaSyDVFuEkVQC3raHghreXIjCxh3UZScOWDOA"
 genai.configure(api_key=GEMINI_API_KEY)
 model_chat = genai.GenerativeModel("gemini-1.5-flash")
 
-chat_history = []
-
-# Input box for user's question
+# User input
 user_query = st.sidebar.text_input("Ask me anything about the app or data 👇")
 
 if user_query:
-    try:
-        chat_response = model_chat.generate_content(user_query)
-        answer = chat_response.text
-        st.sidebar.markdown("**🤖 Answer:**")
-        st.sidebar.markdown(answer)
-    except Exception as e:
-        st.sidebar.error(f"Error: {str(e)}")
+    # Try to get a matched answer from FAQ
+    custom_answer = find_answer_from_faq(user_query)
+    
+    if custom_answer:
+        st.sidebar.markdown("**📘 From Project FAQ:**")
+        st.sidebar.markdown(custom_answer)
+    else:
+        try:
+            chat_response = model_chat.generate_content(user_query)
+            st.sidebar.markdown("**🤖 Gemini Answer:**")
+            st.sidebar.markdown(chat_response.text)
+        except Exception as e:
+            st.sidebar.error(f"Error: {str(e)}")
