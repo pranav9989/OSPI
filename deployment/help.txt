@@ -1,0 +1,5 @@
+📍 What Does Region = 1 Mean?
+Region 1 (and others like 2–9) do not correspond to specific countries or states — these are anonymized categorical codes for different geographical regions.
+
+They may represent different continents, countries, or market segments based on the dataset's internal logic, but the exact mapping is not publicly available.
+

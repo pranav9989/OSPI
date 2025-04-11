@@ -58,30 +58,49 @@ if page == "Predictor":
     ]
 
     # 🧾 Input Form
+        # 🧾 Input Form
     with st.form("prediction_form"):
         st.subheader("📝 Enter Shopper Info")
+        st.markdown("Please provide the following details about the shopper session. These features help the model predict purchase intention:")
+
         col1, col2 = st.columns(2)
 
         with col1:
-            Administrative = st.number_input("📄 Administrative", min_value=0, value=1)
-            ProductRelated = st.number_input("🛒 Product Related", min_value=0, value=1)
-            BounceRates = st.number_input("↩️ Bounce Rates", min_value=0.0, format="%.6f")
-            PageValues = st.number_input("📈 Page Values", min_value=0.0, format="%.6f")
-            SpecialDay = st.selectbox("🎉 Special Day", [0, 1])
-            VisitorType = st.radio("🧑‍💻 Visitor Type", ['Returning_Visitor', 'New_Visitor', 'Other'])
-            OperatingSystems = st.selectbox("💻 Operating System", [1, 2, 3, 'other'])
-            Region = st.selectbox("🌍 Region", list(range(1, 10)))
+            Administrative = st.number_input("📄 Administrative (Number of administrative pages visited)", min_value=0, value=1,
+                                             help="Pages related to account management, FAQ, etc.")
+            ProductRelated = st.number_input("🛒 Product Related (Number of product-related pages viewed)", min_value=0, value=1,
+                                             help="Pages related to products, such as product descriptions.")
+            BounceRates = st.number_input("↩️ Bounce Rates (Ratio of single-page visits)", min_value=0.0, format="%.6f",
+                                          help="The percentage of visitors who left after viewing only one page.")
+            PageValues = st.number_input("📈 Page Values (Average value of pages viewed)", min_value=0.0, format="%.6f",
+                                         help="Indicates the monetary value of a page based on conversion.")
+            SpecialDay = st.selectbox("🎉 Special Day (Is it close to a special day?)", [0, 1],
+                                      help="1 = Near a special day like Valentine's, Black Friday, etc.")
+            VisitorType = st.radio("🧑‍💻 Visitor Type", ['Returning_Visitor', 'New_Visitor', 'Other'],
+                                   help="Type of shopper based on past visits.")
+            OperatingSystems = st.selectbox("💻 Operating System", [1, 2, 3, 'other'],
+                                            help="Visitor's operating system. 'Other' includes rare systems.")
+            Region = st.selectbox("🌍 Region (Geographic region code)", list(range(1, 10)),
+                                  help="Represents the location of the visitor.")
 
         with col2:
-            Administrative_Duration = st.number_input("🕒 Administrative Duration (sec)", min_value=0.0, format="%.3f")
-            ProductRelated_Duration = st.number_input("⏱ Product Related Duration (sec)", min_value=0.0, format="%.3f")
-            ExitRates = st.number_input("🚪 Exit Rates", min_value=0.0, format="%.6f")
-            Month = st.selectbox("📆 Month (1–12)", list(range(1, 13)))
-            Weekend = st.selectbox("🗓 Weekend", [0, 1])
-            TrafficType = st.selectbox("🚦 Traffic Type", list(range(1, 21)))
-            Browser = st.selectbox("🌐 Browser", [1, 2, 'other'])
+            Administrative_Duration = st.number_input("🕒 Administrative Duration (Total time on admin pages)", min_value=0.0, format="%.3f",
+                                                      help="Total time (in seconds) spent on administrative pages.")
+            ProductRelated_Duration = st.number_input("⏱ Product Related Duration (Total time on product pages)", min_value=0.0, format="%.3f",
+                                                      help="Total time (in seconds) spent on product-related pages.")
+            ExitRates = st.number_input("🚪 Exit Rates (Page exit percentage)", min_value=0.0, format="%.6f",
+                                        help="Percentage of exits that happened from a given page.")
+            Month = st.selectbox("📆 Month (1–12)", list(range(1, 13)),
+                                 help="Numeric month when the visit occurred.")
+            Weekend = st.selectbox("🗓 Weekend (Was the visit on a weekend?)", [0, 1],
+                                   help="1 = Visit occurred on a weekend (Saturday/Sunday).")
+            TrafficType = st.selectbox("🚦 Traffic Type", list(range(1, 21)),
+                                       help="The source from where the user landed on the website.")
+            Browser = st.selectbox("🌐 Browser", [1, 2, 'other'],
+                                   help="The visitor's web browser. 1 and 2 are common browsers; others are grouped as 'other'.")
 
         submit = st.form_submit_button("📊 Predict")
+
 
     # 🎯 Prediction
     if submit:
@@ -191,3 +210,27 @@ elif page == "Dashboard":
     fig3, ax3 = plt.subplots()
     sns.countplot(data=df, x='VisitorType', hue='Revenue', ax=ax3, palette='Set2')
     st.pyplot(fig3)
+
+import google.generativeai as genai
+
+st.sidebar.markdown("---")
+st.sidebar.header("💬 Ask a Question")
+
+# Initialize Gemini
+GEMINI_API_KEY = "AIzaSyDVFuEkVQC3raHghreXIjCxh3UZScOWDOA"
+genai.configure(api_key=GEMINI_API_KEY)
+model_chat = genai.GenerativeModel("gemini-1.5-flash")
+
+chat_history = []
+
+# Input box for user's question
+user_query = st.sidebar.text_input("Ask me anything about the app or data 👇")
+
+if user_query:
+    try:
+        chat_response = model_chat.generate_content(user_query)
+        answer = chat_response.text
+        st.sidebar.markdown("**🤖 Answer:**")
+        st.sidebar.markdown(answer)
+    except Exception as e:
+        st.sidebar.error(f"Error: {str(e)}")
