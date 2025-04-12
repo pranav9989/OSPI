@@ -355,5 +355,21 @@
   {
     "question": "Why is it important to look at both the mean accuracy and standard deviation when evaluating model performance?",
     "answer": "Looking at both mean accuracy and standard deviation is important because the mean tells you how well the model performs on average, while the standard deviation shows how stable and consistent the model's performance is across different subsets of the data. A high mean accuracy with a low standard deviation is desirable as it indicates both good performance and reliability."
+  },
+  {
+    "question": "Why does the 'Region' column have numbers instead of actual region names?",
+    "answer": "The 'Region' column uses numerical IDs (1 to 9) instead of names because the dataset is anonymized. These numbers represent different user regions, but the specific geographic names are not provided. It's common in datasets to use IDs to protect privacy or simplify categorical representation."
+  },
+  {
+    "question": "Why is the 'TrafficType' column represented as a number instead of a source name like 'Google' or 'Email'?",
+    "answer": "The 'TrafficType' column contains numeric codes representing different types of traffic sources (e.g., direct, referral, search engines). The dataset uses numeric values (e.g., 1 to 20) as anonymous identifiers for each traffic source category. The exact names are not disclosed in the dataset."
+  },
+  {
+    "question": "Why is the 'Browser' column numeric instead of showing browser names like 'Chrome' or 'Firefox'?",
+    "answer": "The 'Browser' column uses numeric codes to represent different web browsers. This is a common approach in anonymized datasets to reduce complexity or avoid naming specific technologies. Each number corresponds to a unique browser, but exact names are not included."
+  },
+  {
+    "question": "Why are the 'OperatingSystems' shown as numbers rather than names like 'Windows' or 'MacOS'?",
+    "answer": "The 'OperatingSystems' column is encoded using numeric values (1 to 8+), with each number representing a specific operating system. The dataset does not include exact names for these values to maintain generalization and anonymity."
   }
 ]
