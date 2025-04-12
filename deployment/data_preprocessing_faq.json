@@ -370,6 +370,6 @@
   },
   {
     "question": "Why are the 'OperatingSystems' shown as numbers rather than names like 'Windows' or 'MacOS'?",
-    "answer": "The 'OperatingSystems' column is encoded using numeric values (1 to 8+), with each number representing a specific operating system. The dataset does not include exact names for these values to maintain generalization and anonymity."
+    "answer": "The 'OperatingSystems' column is encoded using numeric values (1,2 and others+), with each number representing a specific operating system. The dataset does not include exact names for these values to maintain generalization and anonymity."
   }
 ]
