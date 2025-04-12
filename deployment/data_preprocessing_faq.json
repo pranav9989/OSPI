@@ -110,5 +110,250 @@
   {
     "question": "Why is data preprocessing important?",
     "answer": "Preprocessing prepares raw data for modeling by cleaning, transforming, and structuring it in a way that enhances model performance, ensures consistency, and handles issues like skewness, imbalance, and categorical variables."
+  },
+  {
+    "question": "How many numerical columns are there in the dataset?",
+    "answer": "There are 14 numerical columns: ['Administrative', 'Administrative_Duration', 'Informational', 'Informational_Duration', 'ProductRelated', 'ProductRelated_Duration', 'BounceRates', 'ExitRates', 'PageValues', 'SpecialDay', 'OperatingSystems', 'Browser', 'Region', 'TrafficType']"
+  },
+  {
+    "question": "How many columns are highly skewed (|skewness| > 1)?",
+    "answer": "6 columns are highly skewed: ['Administrative_Duration', 'Informational_Duration', 'ProductRelated_Duration', 'PageValues', 'SpecialDay', 'TrafficType']"
+  },
+  {
+    "question": "How many columns are right skewed (skewness > 0)?",
+    "answer": "12 columns are right skewed: ['Administrative', 'Administrative_Duration', 'Informational', 'Informational_Duration', 'ProductRelated', 'ProductRelated_Duration', 'BounceRates', 'ExitRates', 'PageValues', 'SpecialDay', 'Region', 'TrafficType']"
+  },
+  {
+    "question": "How many columns are left skewed (skewness < 0)?",
+    "answer": "2 columns are left skewed: ['OperatingSystems', 'Browser']"
+  },
+  {
+    "question": "What is the skewness of each numerical column?",
+    "answer": {
+      "Administrative": 0.57,
+      "Administrative_Duration": 4.82,
+      "Informational": 1.66,
+      "Informational_Duration": 10.22,
+      "ProductRelated": 0.79,
+      "ProductRelated_Duration": 3.46,
+      "BounceRates": 0.62,
+      "ExitRates": 0.62,
+      "PageValues": 1.85,
+      "SpecialDay": 1.74,
+      "OperatingSystems": -0.14,
+      "Browser": -0.44,
+      "Region": 0.99,
+      "TrafficType": 1.75
+    }
+  },
+  {
+    "question": "What is the target variable?",
+    "answer": "The target variable is 'Revenue'."
+  },
+  {
+    "question": "Is there a class imbalance in the target variable?",
+    "answer": "Yes, there is a class imbalance. The counts are: False → 10,297 and True → 1,908"
+  },
+  {
+    "question": "What preprocessing technique is used for numerical features?",
+    "answer": "StandardScaler is used to scale the numerical features to have zero mean and unit variance."
+  },
+  {
+    "question": "How are the numerical columns selected for preprocessing?",
+    "answer": "Numerical columns are selected using pandas `select_dtypes` with 'int64' and 'float64' data types."
+  },
+  {
+    "question": "Which transformer is used to apply preprocessing to specific columns?",
+    "answer": "ColumnTransformer is used to apply StandardScaler to the selected numerical columns."
+  },
+  {
+    "question": "Is the same preprocessing applied to both training and testing data?",
+    "answer": "Yes, the transformer is first fit on the training data and then used to transform both training and testing data."
+  },
+  {
+    "question": "Is any technique used to handle class imbalance?",
+    "answer": "Yes, SMOTE (Synthetic Minority Over-sampling Technique) is used to handle class imbalance in the training data."
+  },
+  {
+    "question": "At what stage is SMOTE applied?",
+    "answer": "SMOTE is applied after scaling the training data using StandardScaler."
+  },
+  {
+    "question": "Is the preprocessing pipeline saved for future use?",
+    "answer": "Yes, the fitted preprocessor is saved using `joblib.dump` to a file named 'preprocessor.pkl'."
+  },
+  {
+    "question": "What library is used to save the preprocessing pipeline?",
+    "answer": "`joblib` is used to save the preprocessing pipeline."
+  },
+  {
+    "question": "What is the purpose of using SMOTE?",
+    "answer": "SMOTE generates synthetic samples for the minority class to balance the dataset and improve model training."
+  },
+  {
+    "question": "Why is it important to apply the same preprocessing to test data?",
+    "answer": "Applying the same preprocessing ensures that the test data is scaled in the same way as the training data, maintaining consistency for model predictions."
+  },
+  {
+    "question": "Which model achieved the highest test accuracy?",
+    "answer": "The Random Forest Classifier and XGBoost both achieved the highest test accuracy of 0.90 (89.73% for XGBoost and 89.62% for Random Forest)."
+  },
+  {
+    "question": "Which model shows signs of overfitting?",
+    "answer": "Random Forest and XGBoost show signs of overfitting. Random Forest had 100% training accuracy, and XGBoost had 99%, but their test accuracies dropped to around 90%."
+  },
+  {
+    "question": "Which model performed worst on the test data?",
+    "answer": "Naïve Bayes performed the worst with a test accuracy of 68.19%."
+  },
+  {
+    "question": "Which model has the best generalization capability?",
+    "answer": "Logistic Regression and AdaBoost showed balanced performance between training and test accuracy, indicating good generalization (Train: ~86-88%, Test: ~88%)."
+  },
+  {
+    "question": "Which models had high precision but low recall for the minority class (1)?",
+    "answer": "Most models, including Logistic Regression, SVM, and AdaBoost, showed relatively low recall but moderate-to-high precision for class 1 on test data. For example, Logistic Regression had 0.57 precision and 0.77 recall."
+  },
+  {
+    "question": "What is the f1-score for class 1 on the test set using XGBoost?",
+    "answer": "The f1-score for class 1 using XGBoost on the test set is 0.66."
+  },
+  {
+    "question": "Which model had the most balanced precision and recall for both classes on the test data?",
+    "answer": "Gradient Boosting had fairly balanced precision and recall for both classes (Class 0: precision=0.95, recall=0.92; Class 1: precision=0.61, recall=0.75)."
+  },
+  {
+    "question": "Which model has the best recall for the positive class (1) on the test set?",
+    "answer": "Naïve Bayes had the highest recall for class 1 on the test set with a recall of 0.87, though it came at the cost of precision and overall accuracy."
+  },
+  {
+    "question": "What is the impact of class imbalance on model performance?",
+    "answer": "Many models show high accuracy for class 0 but significantly lower recall and f1-score for class 1, indicating class imbalance is affecting the models' ability to detect minority class cases effectively."
+  },
+  {
+    "question": "Which models had near-equal precision and recall for class 1 on the training data?",
+    "answer": "SVM, Gradient Boosting, and XGBoost had near-equal precision and recall for class 1 on the training data (~0.90+)."
+  },
+  {
+    "question": "What are the best hyperparameters found for Logistic Regression (LR)?",
+    "answer": {
+      "solver": "liblinear",
+      "penalty": "l1",
+      "max_iter": 100,
+      "C": 0.01
+    }
+  },
+  {
+    "question": "What are the best hyperparameters found for Random Forest (RF)?",
+    "answer": {
+      "n_estimators": 200,
+      "min_samples_split": 20,
+      "max_features": 5,
+      "max_depth": 4
+    }
+  },
+  {
+    "question": "What are the best hyperparameters found for AdaBoost Classifier (AB)?",
+    "answer": {
+      "n_estimators": 70,
+      "algorithm": "SAMME"
+    }
+  },
+  {
+    "question": "What are the best hyperparameters found for Gradient Boosting Classifier (GB)?",
+    "answer": {
+      "n_estimators": 200,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    }
+  },
+  {
+    "question": "What are the best hyperparameters found for XGBoost Classifier (XGB)?",
+    "answer": {
+      "subsample": 0.8,
+      "n_estimators": 200,
+      "max_depth": 3,
+      "learning_rate": 0.05
+    }
+  },
+  {
+    "question": "Which model achieved the highest test accuracy after hyperparameter tuning?",
+    "answer": "XGBoost achieved the highest test accuracy of 0.8943."
+  },
+  {
+    "question": "Which model had the best balance between precision and recall for class 1 on the test set?",
+    "answer": "Gradient Boosting had the best balance with precision of 0.61 and recall of 0.75, leading to an f1-score of 0.68."
+  },
+  {
+    "question": "Which model performed the best on the training set in terms of accuracy?",
+    "answer": "Gradient Boosting had the highest training accuracy of 0.9260, followed closely by XGBoost at 0.9218."
+  },
+  {
+    "question": "Which model showed signs of overfitting?",
+    "answer": "Gradient Boosting showed the highest training accuracy (0.9260) with a lower test accuracy (0.8930), indicating potential overfitting."
+  },
+  {
+    "question": "Which model had the lowest recall for class 1 on the test set?",
+    "answer": "Random Forest had the lowest recall for class 1 on the test set at 0.81."
+  },
+  {
+    "question": "Which model is the most consistent across training and test sets in terms of accuracy?",
+    "answer": "Logistic Regression is the most consistent, with a train accuracy of 0.8580 and test accuracy of 0.8779, indicating minimal overfitting."
+  },
+  {
+    "question": "After hyperparameter tuning, which model had the highest precision for class 0 on the test set?",
+    "answer": "All models had a high precision for class 0 on the test set, with XGBoost, Gradient Boosting, AdaBoost, and Logistic Regression achieving 0.96."
+  },
+  {
+    "question": "Which model should be selected for deployment if the goal is to minimize false negatives (maximize recall for class 1)?",
+    "answer": "Random Forest had the highest recall for class 1 on the test set at 0.81, making it a good candidate when minimizing false negatives is crucial."
+  },
+  {
+    "question": "Which model had the highest macro average f1-score on the test set?",
+    "answer": "Gradient Boosting had the highest macro average f1-score of 0.81 on the test set."
+  },
+  {
+    "question": "Which model improved the most compared to its training accuracy?",
+    "answer": "Logistic Regression showed a positive jump from 0.8580 train accuracy to 0.8779 test accuracy, indicating strong generalization."
+  },
+  {
+    "question": "What model has the highest mean accuracy in your Stratified K-Fold CV results?",
+    "answer": "The XGBoost model has the highest mean accuracy of 0.9039."
+  },
+  {
+    "question": "Which model has the lowest mean accuracy, and how does it compare to the others?",
+    "answer": "The Logistic Regression model has the lowest mean accuracy of 0.8898. This is still relatively high, but it is slightly lower than the other models like Random Forest (0.8746), Adaboost (0.8883), Gradient Boosting (0.9016), and XGBoost (0.9039)."
+  },
+  {
+    "question": "Which model has the highest standard deviation, indicating the most variability in performance across the folds?",
+    "answer": "The Random Forest model has the highest standard deviation of 0.0063, which suggests more variability in its performance across the different folds."
+  },
+  {
+    "question": "Which model has the lowest standard deviation, indicating the most consistent performance across the folds?",
+    "answer": "The Gradient Boosting model has the lowest standard deviation of 0.0024, indicating it has the most consistent performance across the different folds."
+  },
+  {
+    "question": "How does XGBoost compare to Gradient Boosting in terms of mean accuracy and standard deviation?",
+    "answer": "XGBoost has a slightly higher mean accuracy (0.9039) than Gradient Boosting (0.9016), but the standard deviations are quite similar: XGBoost has 0.0027, and Gradient Boosting has 0.0024, both of which are low, indicating stable performance."
+  },
+  {
+    "question": "Which model shows the least variation in accuracy scores across the five folds?",
+    "answer": "The Gradient Boosting model shows the least variation in accuracy scores across the folds, with scores ranging between 0.8984 and 0.9045."
+  },
+  {
+    "question": "How does Adaboost perform compared to Random Forest in terms of both accuracy and variability?",
+    "answer": "Adaboost has a higher mean accuracy (0.8883) compared to Random Forest (0.8746), and it also has a lower standard deviation (0.0044 compared to 0.0063), indicating more consistent performance."
+  },
+  {
+    "question": "Based on the Stratified K-Fold results, which model would you consider as the most reliable for this classification task?",
+    "answer": "Based on the mean accuracy and low standard deviation, XGBoost would be considered the most reliable model for this classification task, as it provides both high accuracy and consistent performance."
+  },
+  {
+    "question": "If you had to choose a model that balances performance and consistency, which would you pick?",
+    "answer": "Gradient Boosting seems to be a good choice for balancing both performance and consistency, with a high mean accuracy (0.9016) and the lowest standard deviation (0.0024)."
+  },
+  {
+    "question": "Why is it important to look at both the mean accuracy and standard deviation when evaluating model performance?",
+    "answer": "Looking at both mean accuracy and standard deviation is important because the mean tells you how well the model performs on average, while the standard deviation shows how stable and consistent the model's performance is across different subsets of the data. A high mean accuracy with a low standard deviation is desirable as it indicates both good performance and reliability."
   }
 ]
