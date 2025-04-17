@@ -6,31 +6,13 @@
 
 A machine learning-powered Streamlit web application designed to predict whether an online shopper is likely to make a purchase based on their session behavior data. This tool utilizes pre-trained machine learning models to provide real-time predictions through an intuitive user interface.
 
----
-
-## ✨ Demo / Screenshot
-
-*(It's highly recommended to add a screenshot or GIF of your app in action here!)*
-
-![OSPI App Screenshot Placeholder](screenshot.png) <!-- Replace with an actual path to your screenshot -->
-
----
-
-## 🚀 Features
-
-*   **Real-time Prediction:** Instantly predict purchase intention based on user input features.
-*   **User-Friendly Interface:** Simple and interactive Streamlit interface for easy data entry.
-*   **ML Model Integration:** Leverages pre-trained machine learning models for accurate predictions.
-*   **Data-Driven Insights:** Helps understand factors influencing online purchase decisions.
-
----
 
 ## 🛠️ Technology Stack
 
 *   **Language:** Python 3.x
 *   **Web Framework:** Streamlit
-*   **Machine Learning:** Scikit-learn (or specify other libraries like TensorFlow, PyTorch)
-*   **Data Handling:** Pandas, NumPy
+*   **Machine Learning:** Scikit-learn 
+*   **Data Handling:** Pandas, NumPy, Seaborn, Matplotlib.
 
 ---
 
@@ -94,6 +76,3 @@ This will automatically open the OSPI app in your default web browser.
 3.  Use the sidebar or main interface elements to input the required online session features (e.g., Administrative duration, Informational pages visited, ProductRelated duration, BounceRates, ExitRates, PageValues, SpecialDay proximity, VisitorType, etc. - *adjust based on your actual input fields*).
 4.  Click the "Predict" or "Submit" button.
 5.  The app will display the prediction indicating whether the shopper is likely to make a purchase (`Revenue` = True/False or Yes/No) based on the input data.
-
-
-## 📁 Project Structure (Illustrative)
