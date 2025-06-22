@@ -1,8 +1,6 @@
 # 🛍️ Online Shopper Purchase Intention (OSPI) App
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://your-deployed-app-url) <!-- Replace with your deployed app URL if available -->
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repo-blue?logo=github)](https://github.com/pranav9989/OSPI)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) <!-- Add a LICENSE file with MIT License text -->
+
 
 A machine learning-powered Streamlit web application designed to predict whether an online shopper is likely to make a purchase based on their session behavior data. This tool utilizes pre-trained machine learning models to provide real-time predictions through an intuitive user interface.
 
